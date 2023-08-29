@@ -59,7 +59,7 @@ def upload(csvfile, blobname):
     """
     Uploads the CSV file into the bucket with the given blobname
     """
-    bucketname = os.environ.get("BUCKET_NAME")
+    bucketname = os.environ.get("BUCKET")
     
     client = storage.Client()
     bucket = client.get_bucket(bucketname)

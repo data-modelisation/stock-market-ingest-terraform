@@ -8,12 +8,14 @@ SERVICE_NAME=ingest-market-data
 SERVICE_ACCOUNT_NAME=svc-market-ingest
 SERVICE_ACCOUNT_EMAIL=${SERVICE_ACCOUNT_NAME}@${PROJECT_ID}.iam.gserviceaccount.com
 
+export TF_VAR_project_id=$PROJECT_ID
+export TF_VAR_region=$REGION
+export TF_VAR_bucket=$BUCKET
+export TF_VAR_service_name=$SERVICE_NAME
+export TF_VAR_dataset=$DATASET
+export TF_VAR_service_account_name=$SERVICE_ACCOUNT_NAME
+export TF_VAR_service_account_email=$SERVICE_ACCOUNT_EMAIL
+
 export PROJECT_ID=$PROJECT_ID
-export REGION=$REGION
-export BUCKET_NAME=$BUCKET
-export SERVICE_NAME=$SERVICE_NAME
 export DATASET=$DATASET
-export SERVICE_ACCOUNT_NAME=$SERVICE_ACCOUNT_NAME
-export SERVICE_ACCOUNT_EMAIL=$SERVICE_ACCOUNT_EMAIL
-
-
+export BUCKET=$BUCKET

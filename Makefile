@@ -10,17 +10,17 @@ permissions:
 setup:
 	./gcp_project/setup.sh
 
-install:
+init:
+	terraform init
+	$(MAKE) permissions
 	$(PYTHON) -m venv venv
 	. venv/bin/activate; pip install -r requirements.txt
 
 build:
-	$(MAKE) permissions
-	$(MAKE) install
-	$(MAKE) setup
+	terraform apply
 
 cleanup:   
-	./gcp_project/cleanup.sh
+	terraform destroy
 
 clean-cache:
 	rm -rf venv __pycache__
@@ -44,9 +44,8 @@ run-test:
 # Help target
 help:
 	@echo "Available commands:"
-	@echo "  make setup        - Run setup script for creating bucket and account"
-	@echo "  make install      - Create virtual environment and install dependencies"
-	@echo "  make build        - Set all configurations"
+	@echo "  make init         - Create virtual environment and install dependencies"
+	@echo "  make build        - Create GCP infrastructure using terraform"
 	@echo "  clean-cache       - Remove cache of the project"
 	@echo "  make cleanup      - Remove bucket and account"
 	@echo "  make run-ingest   - Load data using script ingest.py (usage: make run-ingest symbol=ibm)"

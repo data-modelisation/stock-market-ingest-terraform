@@ -33,15 +33,15 @@ resource "google_storage_bucket" "ingest_bucket" {
 
 resource "google_storage_bucket_iam_binding" "s_bucket_admin" {
     bucket = var.bucket    
-    role =  "roles/storage.admin"
-    memebers = [
+    role = "roles/storage.admin"
+    members = [
         "serviceAccount:${var.service_account_email}"
     ]
 }
 
 resource "google_bigquery_dataset" "ingest_dataset" {
   dataset_id = var.dataset
-  project    = var.project_id
+  project = var.project_id
 }
 
 resource "google_project_iam_binding" "bq_data_owner_binding" {

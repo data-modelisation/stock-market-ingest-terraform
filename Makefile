@@ -7,20 +7,17 @@ build:
 permissions:
 	chmod +x gcp_project/*.sh 
 
-setup:
-	./gcp_project/setup.sh
-
-init:
-	terraform init
+init:	
 	$(MAKE) permissions
 	$(PYTHON) -m venv venv
 	. venv/bin/activate; pip install -r requirements.txt
+	cd build && terraform init
 
 build:
-	terraform apply
+	cd build && terraform apply
 
 cleanup:   
-	terraform destroy
+	cd build && terraform destroy
 
 clean-cache:
 	rm -rf venv __pycache__
